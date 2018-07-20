@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ite_cantidad')->textInput() ?>
 
-    <?= $form->field($model, 'ite_nombre')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'ped_id')->textInput() ?>
 
     <?= $form->field($model, 'pro_id')->textInput() ?>

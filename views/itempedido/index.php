@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'ite_id',
             'ite_cantidad',
-            'ite_nombre',
             'ped_id',
             'pro_id',
 

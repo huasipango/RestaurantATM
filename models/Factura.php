@@ -10,9 +10,8 @@ use Yii;
  * @property int $fac_id id de Factura
  * @property string $fac_fecha Fecha de Factura
  * @property double $fac_subtotal Subtotal de Factura
- * @property double $fac_total Total de Factura
+ * @property double $fac_total Total a Pagar
  * @property double $fac_iva Iva de Factura
- * @property string $fac_estado Estado de Factura
  * @property int $cli_id id de Cliente
  * @property int $ped_id id de Pedido
  * @property int $cob_id id Cobro
@@ -37,11 +36,10 @@ class Factura extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fac_fecha', 'fac_subtotal', 'fac_total', 'fac_iva', 'fac_estado', 'cli_id', 'ped_id', 'cob_id'], 'required'],
+            [['fac_fecha', 'fac_subtotal', 'fac_total', 'fac_iva', 'cli_id', 'ped_id', 'cob_id'], 'required'],
             [['fac_fecha'], 'safe'],
             [['fac_subtotal', 'fac_total', 'fac_iva'], 'number'],
             [['cli_id', 'ped_id', 'cob_id'], 'integer'],
-            [['fac_estado'], 'string', 'max' => 60],
             [['ped_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pedido::className(), 'targetAttribute' => ['ped_id' => 'ped_id']],
             [['cli_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['cli_id' => 'cli_id']],
             [['cob_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cobro::className(), 'targetAttribute' => ['cob_id' => 'cob_id']],
@@ -57,9 +55,8 @@ class Factura extends \yii\db\ActiveRecord
             'fac_id' => 'id de Factura',
             'fac_fecha' => 'Fecha de Factura',
             'fac_subtotal' => 'Subtotal de Factura',
-            'fac_total' => 'Total de Factura',
+            'fac_total' => 'Total a Pagar',
             'fac_iva' => 'Iva de Factura',
-            'fac_estado' => 'Estado de Factura',
             'cli_id' => 'id de Cliente',
             'ped_id' => 'id de Pedido',
             'cob_id' => 'id Cobro',

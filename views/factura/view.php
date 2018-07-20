@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'fac_subtotal',
             'fac_total',
             'fac_iva',
-            'fac_estado',
             'cli_id',
             'ped_id',
             'cob_id',

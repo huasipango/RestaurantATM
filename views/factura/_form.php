@@ -20,8 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fac_iva')->textInput() ?>
 
-    <?= $form->field($model, 'fac_estado')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'cli_id')->textInput() ?>
 
     <?= $form->field($model, 'ped_id')->textInput() ?>

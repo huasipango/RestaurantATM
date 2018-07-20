@@ -19,7 +19,6 @@ class ItempedidoSearch extends Itempedido
     {
         return [
             [['ite_id', 'ite_cantidad', 'ped_id', 'pro_id'], 'integer'],
-            [['ite_nombre'], 'safe'],
         ];
     }
 
@@ -64,8 +63,6 @@ class ItempedidoSearch extends Itempedido
             'ped_id' => $this->ped_id,
             'pro_id' => $this->pro_id,
         ]);
-
-        $query->andFilterWhere(['like', 'ite_nombre', $this->ite_nombre]);
 
         return $dataProvider;
     }

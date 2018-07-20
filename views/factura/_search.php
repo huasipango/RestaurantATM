@@ -25,8 +25,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fac_iva') ?>
 
-    <?php // echo $form->field($model, 'fac_estado') ?>
-
     <?php // echo $form->field($model, 'cli_id') ?>
 
     <?php // echo $form->field($model, 'ped_id') ?>

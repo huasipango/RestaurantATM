@@ -17,11 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ped_id') ?>
 
-    <?= $form->field($model, 'ped_numero') ?>
-
     <?= $form->field($model, 'ped_estado') ?>
 
-    <?= $form->field($model, 'ped_fecha') ?>
+    <?= $form->field($model, 'ped_total') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -19,7 +19,7 @@ class FacturaSearch extends Factura
     {
         return [
             [['fac_id', 'cli_id', 'ped_id', 'cob_id'], 'integer'],
-            [['fac_fecha', 'fac_estado'], 'safe'],
+            [['fac_fecha'], 'safe'],
             [['fac_subtotal', 'fac_total', 'fac_iva'], 'number'],
         ];
     }
@@ -69,8 +69,6 @@ class FacturaSearch extends Factura
             'ped_id' => $this->ped_id,
             'cob_id' => $this->cob_id,
         ]);
-
-        $query->andFilterWhere(['like', 'fac_estado', $this->fac_estado]);
 
         return $dataProvider;
     }

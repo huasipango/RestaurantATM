@@ -19,8 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ite_cantidad') ?>
 
-    <?= $form->field($model, 'ite_nombre') ?>
-
     <?= $form->field($model, 'ped_id') ?>
 
     <?= $form->field($model, 'pro_id') ?>

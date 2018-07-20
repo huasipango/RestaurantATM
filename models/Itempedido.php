@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $ite_id id de Item Pedido
  * @property int $ite_cantidad Cantidad de Item Pedido
- * @property string $ite_nombre Nombre de de Item Pedido
  * @property int $ped_id id de Pedido
  * @property int $pro_id id de Producto
  *
@@ -32,9 +31,8 @@ class Itempedido extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ite_cantidad', 'ite_nombre', 'ped_id', 'pro_id'], 'required'],
+            [['ite_cantidad', 'ped_id', 'pro_id'], 'required'],
             [['ite_cantidad', 'ped_id', 'pro_id'], 'integer'],
-            [['ite_nombre'], 'string', 'max' => 60],
             [['pro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producto::className(), 'targetAttribute' => ['pro_id' => 'pro_id']],
             [['ped_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pedido::className(), 'targetAttribute' => ['ped_id' => 'ped_id']],
         ];
@@ -48,7 +46,6 @@ class Itempedido extends \yii\db\ActiveRecord
         return [
             'ite_id' => 'id de Item Pedido',
             'ite_cantidad' => 'Cantidad de Item Pedido',
-            'ite_nombre' => 'Nombre de de Item Pedido',
             'ped_id' => 'id de Pedido',
             'pro_id' => 'id de Producto',
         ];

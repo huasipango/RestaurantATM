@@ -29,9 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'ped_id',
-            'ped_numero',
             'ped_estado',
-            'ped_fecha',
+            'ped_total',
         ],
     ]) ?>
 
