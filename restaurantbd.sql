@@ -1,12 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 20-07-2018 a las 15:40:17
--- Versión del servidor: 5.7.19
--- Versión de PHP: 5.6.31
-
+-- Tiempo de generación: 22-07-2018 a las 03:49:42
+-- Versión del servidor: 5.7.21
+-- Versión de PHP: 7.0.29
+create database restaurantbd;
+use restaurantbd;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -35,22 +36,24 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `cat_imagen` varchar(200) NOT NULL COMMENT 'Imagen de Categoria',
   `cat_descripcion` varchar(200) NOT NULL COMMENT 'Descripcion de Categoria',
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_imagen`, `cat_descripcion`) VALUES
-(1, 'PAPAS', 'IMAGEN PAPA', 'TUBÉRCULO'),
-(2, 'patata', 'no image', 'qwqwd'),
-(3, 'patata', 'no image', 'qwqwd'),
-(4, '23', 'no image', '23'),
-(5, 'a', 'no image', 'a'),
-(6, '23', 'no image', '12'),
-(7, 'qwyeqw', 'no image', '12e'),
-(8, '23e', 'no image', 'df'),
-(9, 'qwe', 'cat_qwe.jpg', 'qw');
+(11, 'CARNE ANIMAL', 'cat_CARNE ANIMAL.png', 'CARNE DE VACA. POLLO Y CERDO'),
+(12, 'CARNE VEGETAL', 'cat_CARNE VEGETAL.png', 'CARNE DE SOYA'),
+(13, 'CEREALES', 'cat_CEREALES.png', 'ALIMENTOS NUTRITIVOS'),
+(14, 'EMBUTIDOS', 'cat_EMBUTIDOS.png', 'CARNE PROCESADA'),
+(15, 'FRUTAS', 'cat_FRUTAS.png', 'FRUTAS'),
+(16, 'VEGETALES', 'cat_VEGETALES.png', 'PRODUCTOS NATURALES Y DE LA TIERRA'),
+(17, 'JUGOS NATURALES', 'cat_JUGOS NATURALES.png', 'BEBIDA NATURAL DE EXTRACTO DE FRUTAS CON AZÚCAR'),
+(18, 'PRODUCTO RAPIDITO', 'cat_PRODUCTO RAPIDITO.png', 'PRODUCTOS PREPARADOS EN EL RESTAURANT'),
+(19, 'REFRESCOS', 'cat_REFRESCOS.png', 'GASEOSAS'),
+(20, 'SALSAS', 'cat_SALSAS.png', 'SALSAS'),
+(21, 'TUBERCULOS', 'cat_TUBERCULOS.png', 'FRUTOS DE LA TIERRA');
 
 -- --------------------------------------------------------
 
@@ -69,14 +72,19 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `cli_email` varchar(60) NOT NULL COMMENT 'Email de Cliente',
   `cli_fechaNacimiento` date NOT NULL COMMENT 'Nacimiento de Cliente',
   PRIMARY KEY (`cli_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`cli_id`, `cli_nombre`, `cli_apellido`, `cli_direccion`, `cli_ciudad`, `cli_telefono`, `cli_email`, `cli_fechaNacimiento`) VALUES
-(1, 'JOHNNY', 'VILLACÍS', 'AVENIDA DE LAS AMÉRICAS', 'AMBATO', '0987654321', '12345@GMAIL.COM', '1998-08-08');
+(2, 'DANIEL', 'LOPEZ', 'QUITO', 'QUITO', '098765432', 'DANIEL@GMAIL.COM', '2018-05-01'),
+(3, 'ANTHONY', 'CABRERA', 'SANTO DOMINGO', 'SANTO DOMINGO', '345678909876', 'ANTHONY@GMAIL.COM', '2018-08-06'),
+(4, 'JOHNNY', 'VILLACIS', 'AMBATO', 'AMBATO', '09876567890', 'JOHNNY@GMAIL.COM', '2018-07-02'),
+(5, 'DAVID', 'ESPARZA', 'SAN GABRIEL', 'SAN GABRIEL', '3456789876', 'DAVID@GMAIL.COM', '2018-07-04'),
+(6, 'JONATHAN', 'FRANCO', 'QUITO', 'QUITO', '234546532', 'JONA@GMAIL.COM', '2018-07-07'),
+(7, 'ISRAEL', 'TENEDA', 'SALCEDO', 'SALCEDO', '23453465', 'ISRA@GMAIL.COM', '2018-07-02');
 
 -- --------------------------------------------------------
 
@@ -92,7 +100,15 @@ CREATE TABLE IF NOT EXISTS `cobro` (
   `cob_cuenta_B` varchar(60) NOT NULL COMMENT 'Cuenta B de Cobro',
   `cob_estado` varchar(60) NOT NULL COMMENT 'Estado de Cobro',
   PRIMARY KEY (`cob_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cobro`
+--
+
+INSERT INTO `cobro` (`cob_id`, `cob_total`, `cob_cuenta_A`, `cob_cuenta_B`, `cob_estado`) VALUES
+(1, 100, '1234546', '23456', 'ABIERTO'),
+(2, 56, '324564', '123256', 'ABIERTO');
 
 -- --------------------------------------------------------
 
@@ -114,7 +130,21 @@ CREATE TABLE IF NOT EXISTS `factura` (
   KEY `cli_id` (`cli_id`),
   KEY `ped_id` (`ped_id`),
   KEY `cob_id` (`cob_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`fac_id`, `fac_fecha`, `fac_subtotal`, `fac_total`, `fac_iva`, `cli_id`, `ped_id`, `cob_id`) VALUES
+(1, '2018-07-03', 27, 30, 3, 2, 4, 1),
+(2, '2018-07-01', 17, 20, 3, 3, 5, 2),
+(3, '2018-07-03', 7, 15, 8, 4, 6, 1),
+(4, '2018-07-03', 70, 82, 12, 5, 7, 1),
+(5, '2018-08-17', 40, 48, 8, 7, 8, 1),
+(6, '2018-05-08', 23, 28, 5, 3, 5, 1),
+(7, '2017-06-13', 24, 32, 8, 7, 7, 2),
+(8, '2019-04-18', 23, 20, 12, 5, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -131,16 +161,26 @@ CREATE TABLE IF NOT EXISTS `itempedido` (
   PRIMARY KEY (`ite_id`),
   KEY `ped_id` (`ped_id`),
   KEY `pro_id` (`pro_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `itempedido`
 --
 
 INSERT INTO `itempedido` (`ite_id`, `ite_cantidad`, `ped_id`, `pro_id`) VALUES
-(1, 10, 1, 1),
-(2, 1, 1, 1),
-(3, 3, 1, 1);
+(4, 10, 4, 8),
+(5, 10, 4, 4),
+(6, 10, 4, 11),
+(7, 1, 5, 16),
+(8, 3, 6, 10),
+(9, 3, 6, 20),
+(10, 1, 6, 24),
+(11, 2, 6, 27),
+(12, 1, 7, 12),
+(13, 1, 7, 11),
+(14, 2, 8, 9),
+(15, 2, 8, 5),
+(16, 2, 8, 14);
 
 -- --------------------------------------------------------
 
@@ -154,16 +194,18 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `ped_estado` varchar(60) NOT NULL COMMENT 'Estado de Pedido',
   `ped_total` varchar(45) NOT NULL COMMENT 'Valor Total',
   PRIMARY KEY (`ped_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
 INSERT INTO `pedido` (`ped_id`, `ped_estado`, `ped_total`) VALUES
-(1, 'ABIERTO', ''),
-(2, 'ABIERTO', ''),
-(3, '1', '');
+(4, 'ABIERTO', '0'),
+(5, 'CERRADO', '100'),
+(6, 'ABIERTO', '30'),
+(7, 'CERRADO', '30'),
+(8, 'ABIERTO', '40');
 
 -- --------------------------------------------------------
 
@@ -183,14 +225,42 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `cat_id` int(11) NOT NULL COMMENT 'id Categoria',
   PRIMARY KEY (`pro_id`),
   KEY `cat_id` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`pro_id`, `pro_nombre`, `pro_descripcion`, `pro_costo`, `pro_precio`, `pro_imagen`, `pro_estado`, `cat_id`) VALUES
-(1, 'PAPAS', 'TUBÉRCULO', 0, 1, 'IMAGEN PAPAS', 'DISPONIBLE', 1);
+(2, 'ARROZ', 'PORCIÓN 200 mg', 0.5, 1, 'pro_ARROZ.png', 'DISPONIBLE', 13),
+(3, 'PORCION CEBOLLA', '10 AROS DE CEBOLLA', 0.1, 0.5, 'pro_PORCION CEBOLLA.png', 'VERDURAS', 16),
+(4, 'COCA COLA 22oz', 'VASO PEQUEÑO', 0.5, 1, 'pro_COCA COLA 22oz.png', 'DISPONIBLE', 19),
+(5, 'COCA COLA 30oz', 'VASO MEDIANO', 0.6, 1.5, 'pro_COCA COLA 30oz.png', 'DISPONIBLE', 19),
+(6, 'COCA COLA 44oz', 'VASO GRANDE', 0.7, 1.75, 'pro_COCA COLA 44oz.png', 'DISPONIBLE', 19),
+(7, 'COCA COLA ZERO 22oz', 'VASO MEDIANO SIN CALORÍAS', 0.5, 1.5, 'pro_COCA COLA ZERO 22oz.png', 'NO DISPONIBLE', 19),
+(8, 'HAMBURGUESA GIGANTE', 'HAMBURGUESA GRANDE', 0.8, 2.5, 'pro_HAMBURGUESA GIGANTE.png', 'DISPONIBLE', 18),
+(9, 'HAMBURGUESA MEDIUN', 'HAMBURGUESA MEDIANA', 0.7, 2, 'pro_HAMBURGUESA MEDIUN.png', 'DISPONIBLE', 18),
+(10, 'HAMBURGUESA LITTLE', 'HAMBURGUESA PEQUEÑA', 0.5, 1.5, 'pro_HAMBURGUESA LITTLE.png', 'NO DISPONIBLE', 18),
+(11, 'CHOCOLATE ICE CREAM', 'HELADO DE CHOCOLATE', 0.5, 1, 'pro_CHOCOLATE ICE CREAM.png', 'DISPONIBLE', 18),
+(12, 'VAINILLA ICE CREAM', 'HELADO DE VAINILLA', 0.5, 1, 'pro_VAINILLA ICE CREAM.png', 'DISPONIBLE', 18),
+(13, 'HOTDOG XXX', 'HOTDOG NORMAL', 0.8, 2, 'pro_HOTDOG XXX.png', 'DISPONIBLE', 18),
+(14, 'MIX ICE CREAM', 'HELADO MIXTO', 0.5, 1.2, 'pro_MIX ICE CREAM.png', 'NO DISPONIBLE', 18),
+(15, 'PORCION JAMON 3 RODAJAS', 'JAMÓN DE ESPALDA', 0.5, 1.5, 'pro_PORCION JAMON 3 RODAJAS.png', 'DISPONIBLE', 14),
+(16, 'VASO AVENA 22oz', 'VASO PEQUEÑO DE AVENA', 0.3, 1, 'pro_VASO AVENA 22oz.png', 'DISPONIBLE', 17),
+(17, 'AVENA POLACA 40oz', 'VASO DE AVENA POLACA PEQUEÑA', 1, 1.5, 'pro_AVENA POLACA 40oz.png', 'NO DISPONIBLE', 19),
+(18, 'JUGO LIMON 22oz', 'VASO PEQUEÑO DE JUGO DE LIMÓN', 0.3, 0.5, 'pro_JUGO LIMON 22oz.png', 'DISPONIBLE', 17),
+(19, 'JUGO NARANJA 22oz', 'VASO PEQUEÑO DE JUGO DE NARANJA', 0.3, 0.5, 'pro_JUGO NARANJA 22oz.png', 'DISPONIBLE', 17),
+(20, 'JUGO SANDIA 22oz', 'VASO PEQUEÑO DE JUGO DE SANDÍA', 0.3, 0.7, 'pro_JUGO SANDIA 22oz.png', 'NO DISPONIBLE', 17),
+(21, 'NACHOS CON QUESO', 'NACHOS ACOMPAÑADOS CON SALSA DE QUESO', 1, 2.5, 'pro_NACHOS CON QUESO.png', 'DISPONIBLE', 18),
+(22, 'NUGGETS RAPIDITO', 'NUGGETS DE POLLO', 0.7, 2, 'pro_NUGGETS RAPIDITO.png', 'DISPONIBLE', 18),
+(23, 'BIG PAPAS', 'PORCIÓN GRANDE DE PAPAS', 0.5, 2, 'pro_BIG PAPAS.png', 'DISPONIBLE', 18),
+(24, 'MED PAPAS', 'PORCIÓN MEDIANA DE PAPAS', 0.4, 1.8, 'pro_MED PAPAS.png', 'DISPONIBLE', 18),
+(25, 'LIT PAPAS', 'PORCIÓN PEQUEÑA DE PAPAS', 0.3, 1.5, 'pro_LIT PAPAS.png', 'DISPONIBLE', 18),
+(26, 'PORCION PASAS', 'UVAS PASAS DISECADAS', 0.2, 1, 'pro_PORCION PASAS.png', 'DISPONIBLE', 15),
+(27, 'PORCION TOMATE', 'REBANADAS DE TOMATE', 0.2, 1, 'pro_PORCION TOMATE.png', 'NO DISPONIBLE', 16),
+(28, 'PORCION SALSA DE TOMATE', 'SALSA DE TOMATE', 0.3, 1, 'pro_PORCION SALSA DE TOMATE.png', 'DISPONIBLE', 20),
+(29, 'PORCION MAYONESA', 'MAYONESA', 0.4, 1, 'pro_PORCION MAYONESA.png', 'NO DISPONIBLE', 20),
+(30, 'PORCION SALSA DE QUESO', 'SALSA PICANTE DE QUESO', 0.8, 1.5, 'pro_PORCION SALSA DE QUESO.png', 'DISPONIBLE', 20);
 
 -- --------------------------------------------------------
 
