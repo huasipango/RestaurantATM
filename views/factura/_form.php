@@ -19,7 +19,7 @@ use app\models\Cobro;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'ped_id')->dropDownList(
-                ArrayHelper::map(Pedido::find()->all(),'ped_id','ped_numero'),
+                ArrayHelper::map(Pedido::find()->all(),'ped_id','ped_id'),
                 ['prompt'=>'Seleccione...']); ?>
 
     <?= $form->field($model, 'cli_id')->dropDownList(
