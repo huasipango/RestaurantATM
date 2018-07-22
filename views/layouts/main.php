@@ -55,10 +55,11 @@ AppAsset::register($this);
             ) : (
                 User::isUserAdmin(Yii::$app->user->identity->id) ?(
                     ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
-                    ['label' => 'Clientes', 'url' => ['/cliente/index']],
-                    ['label' => 'Pedidos', 'url' => ['/pedido/index']],
                     ['label' => 'Categorías', 'url' => ['/categoria/index']],
                     ['label' => 'Productos', 'url' => ['/producto/index']],
+                    ['label' => 'Pedido', 'url' => ['/pedido/index']],
+                    ['label' => 'Items Pedido', 'url' => ['/itempedido/index']],
+                    ['label' => 'Clientes', 'url' => ['/cliente/index']],
                     ['label' => 'Facturas', 'url' => ['/factura/index']],
                     ['label' => 'Pagos', 'url' => ['/cobro/index']],
 
@@ -69,7 +70,8 @@ AppAsset::register($this);
                 ]
                 ):(
                 ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
-                    ['label' => 'Pedidos', 'url' => ['/pedido/index']],
+                    ['label' => 'Pedido', 'url' => ['/pedido/index']],
+                    ['label' => 'Items Pedido', 'url' => ['/itempedido/index']],
                     ['label' => 'Logout (' . \Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']]
