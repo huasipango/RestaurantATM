@@ -9,7 +9,15 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-    background-color: #673AB7;
+    background-color: #f9db79;
+}
+
+.main-content{
+    width: 100%;
+    background-color: white;
+    padding-bottom: 17px;
+    margin-bottom: -40px;
+    padding: 10px;
 }
 
 .contenedor-index{
@@ -53,7 +61,7 @@ body {
 }
 
 .navbar-brand img {
-    height: 350%;
+    height: 270%;
 }
 
 .body-content{

@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/index/logo.png', ['alt'=>Yii::$app->name], array('height'=>'150', 'width'=>'150')),
+        'brandLabel' => Html::img('@web/images/index/logo.png', ['alt'=>Yii::$app->name], array('height'=>'100', 'width'=>'100')),
         
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -88,7 +88,12 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="main-content">
+            <?= $content ?>    
+        </div>
+        
+    </div>
+
     </div>
 </div>
 
