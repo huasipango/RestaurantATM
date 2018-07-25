@@ -50,7 +50,7 @@ AppAsset::register($this);
                 
                 ['label' => 'User Login', 'url' => ['#'], 'items' => [
                     ['label' => 'Login', 'url' => ['/site/login']],
-                    ['label' => 'Sign up', 'url' => '/site/register'],
+                    ['label' => 'Sign up', 'url' => ['/site/register']],
                 ]]
             ) : (
                 User::isUserAdmin(Yii::$app->user->identity->id) ?(
